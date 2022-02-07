@@ -32,4 +32,38 @@ public class MarvelCharacter {
     @Transient
     private int age;
 
+    public MarvelCharacter() {
+    }
+
+    public MarvelCharacter(Long id, String fullName, String alias, String mainAbility,
+                           String actorsName, LocalDate actorsDOB) {
+        this.id = id;
+        this.charactersName = fullName;
+        this.alias = alias;
+        this.mainAbility = mainAbility;
+        this.actorsName = actorsName;
+        this.actorsDOB = actorsDOB;
+    }
+
+    public MarvelCharacter(String fullName, String alias, String mainAbility,
+                           String actorsName, LocalDate actorsDOB) {
+        this.charactersName = fullName;
+        this.alias = alias;
+        this.mainAbility = mainAbility;
+        this.actorsName = actorsName;
+        this.actorsDOB = actorsDOB;
+    }
+
+    //Constructor to test setting and getting the age
+    public MarvelCharacter(Long id, String charactersName, String alias,
+                           String mainAbility, String actorsName,
+                           LocalDate actorsDOB, int age) {
+        this.id = id;
+        this.charactersName = charactersName;
+        this.alias = alias;
+        this.mainAbility = mainAbility;
+        this.actorsName = actorsName;
+        this.actorsDOB = actorsDOB;
+        this.age = age;
+    }
 }
