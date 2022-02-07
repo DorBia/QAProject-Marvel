@@ -22,32 +22,32 @@ public class CharacterController {
     //Create
     @PostMapping("/create")
     public ResponseEntity<MarvelCharacter> create(@RequestBody MarvelCharacter character) {
-        return new ResponseEntity<>(this.service.create(character), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.create(character), HttpStatus.CREATED);
     }
 
     //Read
     @GetMapping("/getAll")
     public ResponseEntity<List<MarvelCharacter>> getAll(){
-        return new ResponseEntity<>(this.service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.getAll(), HttpStatus.FOUND);
     }
 
     //By ID
     @GetMapping("/get/{id}")
     public ResponseEntity<MarvelCharacter> getById(@PathVariable Long id){
-        return new ResponseEntity<>(this.service.getById(id), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.getById(id), HttpStatus.FOUND);
     }
 
 
     //Update
     @PutMapping("/update/{id}")
     public ResponseEntity<MarvelCharacter> update(@PathVariable Long id, @RequestBody MarvelCharacter character){
-        return new ResponseEntity<>(this.service.update(id, character), HttpStatus.OK);
+        return new ResponseEntity<>(this.service.update(id, character), HttpStatus.ACCEPTED);
     }
 
     //Delete
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<MarvelCharacter> delete(@PathVariable Long id){
-        return this.service.delete(id) ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        return this.service.delete(id) ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
