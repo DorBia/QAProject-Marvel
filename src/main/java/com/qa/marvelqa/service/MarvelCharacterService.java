@@ -28,6 +28,11 @@ public class MarvelCharacterService implements ServiceCRUD<MarvelCharacter> {
         return this.repo.findById(id).get();
     }
 
+    //Custom - get by ability
+    public List<MarvelCharacter> getByAbility(String mainAbility){
+        return this.repo.findByAbility(mainAbility).orElseThrow();
+    }
+
     public MarvelCharacter update(Long id, MarvelCharacter character){
         MarvelCharacter existing = this.repo.findById(id).get();
         existing.setCharactersName(character.getCharactersName());
