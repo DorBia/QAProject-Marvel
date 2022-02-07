@@ -1,6 +1,7 @@
 package com.qa.marvelqa.service;
 
 import com.qa.marvelqa.domain.MarvelCharacter;
+import com.qa.marvelqa.exceptions.CharacterNotFoundException;
 import com.qa.marvelqa.repo.CharacterRepo;
 import org.springframework.stereotype.Service;
 
@@ -16,20 +17,25 @@ public class MarvelCharacterService implements ServiceCRUD<MarvelCharacter> {
         this.repo = repo;
     }
 
-    public MarvelCharacter create(MarvelCharacter character){
+    public MarvelCharacter create(MarvelCharacter character) {
         return this.repo.saveAndFlush(character);
     }
 
-    public List<MarvelCharacter> getAll(){
+    public List<MarvelCharacter> getAll() {
         return this.repo.findAll();
     }
 
-    public MarvelCharacter getById(Long id){
-        return this.repo.findById(id).get();
+    public MarvelCharacter getById(Long id) {
+        return this.repo.findById(id).orElseThrow(CharacterNotFoundException::new);
     }
 
-    public MarvelCharacter update(Long id, MarvelCharacter character){
-        MarvelCharacter existing = this.repo.findById(id).get();
+    //Custom - get by ability
+    public List<MarvelCharacter> getByAbility(String mainAbility) {
+        return this.repo.findByAbility(mainAbility).orElseThrow();
+    }
+
+    public MarvelCharacter update(Long id, MarvelCharacter character) {
+        MarvelCharacter existing = this.repo.findById(id).orElseThrow(CharacterNotFoundException::new);
         existing.setCharactersName(character.getCharactersName());
         existing.setAlias(character.getAlias());
         existing.setMainAbility(character.getMainAbility());
@@ -38,7 +44,7 @@ public class MarvelCharacterService implements ServiceCRUD<MarvelCharacter> {
         return this.repo.saveAndFlush(existing);
     }
 
-    public boolean delete(Long id){
+    public boolean delete(Long id) {
         this.repo.deleteById(id);
         return !this.repo.existsById(id);
     }
