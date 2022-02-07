@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 @Entity
 public class MarvelCharacter {
@@ -124,5 +125,38 @@ public class MarvelCharacter {
 
     public void setAge(int years) {
         this.age = Period.between(this.actorsDOB, LocalDate.now()).getYears();
+    }
+
+    //Hash and equals
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MarvelCharacter that = (MarvelCharacter) o;
+        return age == that.age && Objects.equals(id, that.id) && charactersName.equals(that.charactersName) &&
+                alias.equals(that.alias) && mainAbility.equals(that.mainAbility) &&
+                actorsName.equals(that.actorsName) && actorsDOB.equals(that.actorsDOB);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, charactersName, alias, mainAbility, actorsName, actorsDOB, age);
+    }
+
+
+    //toString
+
+    @Override
+    public String toString() {
+        return "MarvelCharacter{" +
+                "id=" + id +
+                ", fullName='" + charactersName + '\'' +
+                ", alias='" + alias + '\'' +
+                ", mainAbility='" + mainAbility + '\'' +
+                ", actorsName='" + actorsName + '\'' +
+                ", ActorsDOB=" + actorsDOB +
+                ", age=" + age +
+                '}';
     }
 }
