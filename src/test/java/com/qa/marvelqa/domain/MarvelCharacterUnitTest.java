@@ -79,7 +79,10 @@ public class MarvelCharacterUnitTest {
         MarvelCharacter deadpool = new MarvelCharacter(5L, "Wade Wilson", "Deadpool",
                 "Regenerative Healing Factor", "Ryan Reynolds",
                 LocalDate.of(1976,10,23), (Period.between(LocalDate.of(1976,10,23), LocalDate.now()).getYears()));
+        MarvelCharacter deadpool2 = new MarvelCharacter(5L, "Wade Wilson", "Deadpool",
+                "Regenerative Healing Factor", "Ryan Reynolds",
+                LocalDate.of(1976,10,23), (Period.between(LocalDate.of(1976,10,23), LocalDate.now()).getYears()));
 
-        assertEquals(1629492627, deadpool.hashCode());
+        assertEquals(deadpool.hashCode(), deadpool2.hashCode());
     }
 }

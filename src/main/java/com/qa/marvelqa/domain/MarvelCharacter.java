@@ -15,36 +15,26 @@ public class MarvelCharacter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Please enter the character's name")
+    @NotNull(message = "Please enter the character's name.")
     private String charactersName;
 
-    @NotNull(message = "Please enter the alias")
+    @NotNull(message = "Please enter the alias.")
     private String alias;
 
-    @NotNull(message = "Please enter the main ability")
+    @NotNull(message = "Please enter the main ability.")
     private String mainAbility;
 
-    @NotNull(message = "Please enter a full name")
+    @NotNull(message = "Please enter a full name of the actor.")
     private String actorsName;
 
     @Column(name = "actors_DOB", nullable = false)
-    @Past(message = "the date must be in the past")
+    @Past(message = "The date must be in the past.")
     private LocalDate actorsDOB;
 
     @Transient
     private int age;
 
     public MarvelCharacter() {
-    }
-
-    public MarvelCharacter(Long id, String fullName, String alias, String mainAbility,
-                           String actorsName, LocalDate actorsDOB) {
-        this.id = id;
-        this.charactersName = fullName;
-        this.alias = alias;
-        this.mainAbility = mainAbility;
-        this.actorsName = actorsName;
-        this.actorsDOB = actorsDOB;
     }
 
     public MarvelCharacter(String fullName, String alias, String mainAbility,
@@ -56,7 +46,18 @@ public class MarvelCharacter {
         this.actorsDOB = actorsDOB;
     }
 
-    //Constructor to test setting and getting the age
+    //Constructors for testing
+
+    public MarvelCharacter(Long id, String fullName, String alias, String mainAbility,
+                           String actorsName, LocalDate actorsDOB) {
+        this.id = id;
+        this.charactersName = fullName;
+        this.alias = alias;
+        this.mainAbility = mainAbility;
+        this.actorsName = actorsName;
+        this.actorsDOB = actorsDOB;
+    }
+
     public MarvelCharacter(Long id, String charactersName, String alias,
                            String mainAbility, String actorsName,
                            LocalDate actorsDOB, int age) {
@@ -123,7 +124,7 @@ public class MarvelCharacter {
         return Period.between(this.actorsDOB, LocalDate.now()).getYears();
     }
 
-    public void setAge(int years) {
+    public void setAge(int age) {
         this.age = Period.between(this.actorsDOB, LocalDate.now()).getYears();
     }
 
