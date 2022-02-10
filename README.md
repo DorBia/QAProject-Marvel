@@ -18,3 +18,6 @@ Download the **MarvelQA-0.0.1-SNAPSHOT.jar** and when you have installed java 11
 ## Where is the documentation and some screenshots?
 
 Everything is in the "Documents" folder. All the screenshots and the risk assessment.
+
+## Jira Board
+https://qaproject202.atlassian.net/jira/software/projects/QP/boards/5
